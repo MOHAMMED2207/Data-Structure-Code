@@ -17,6 +17,8 @@ class Linked_list {
     const newNode = new Node(data);
     newNode.next = this.head; 
     this.head = newNode;
+    console.log(this.head);
+    
   }
 
   // 🧾 Print List

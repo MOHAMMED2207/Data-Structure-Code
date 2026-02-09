@@ -21,6 +21,7 @@ class DoublyLinkedList {
       this.tail = newNode;
       return;
     }
+
     this.tail.next = newNode;
     newNode.prev = this.tail;
     this.tail = newNode;
@@ -54,40 +55,37 @@ class DoublyLinkedList {
     return;
   }
 
-
-// remove node at a specific position
-removeAt(position) {
-
+  // remove node at a specific position
+  removeAt(position) {
     if (position < 0) return; // Invalid position
     if (!this.head) return; // List is empty
 
-    // if (position === 0) {
-    //   // Remove head
-    //   this.head = this.head.next;
-    //   if (this.head) this.head.prev = null;
-    //   else this.tail = null; // List became empty
-    //   return;
-    // }
-    // let current = this.head;
-    // let index = 1;  
-    // while (current && index < position) {
-    //   current = current.next;
-    //   index++;
-    // }   
-    // if (!current) return; // Position out of bounds
+    if (position === 0) {
+      // Remove head
+      this.head = this.head.next;
+      if (this.head) this.head.prev = null;
+      else this.tail = null; // List became empty
+      return;
+    }
+    let current = this.head;
+    let index = 1;
+    while (current && index < position) {
+      current = current.next;
+      index++;
+    }
+    if (!current) return; // Position out of bounds
 
-    // if (current === this.tail) {
-    //   // Remove tail
-    //   this.tail = this.tail.prev;
-    //   this.tail.next = null;
-    // } else {
-    //   // Remove middle node
-    //   current.prev.next = current.next;
-    //   current.next.prev = current.prev;
-    // }   
-    // return;
-
-}
+    if (current === this.tail) {
+      // Remove tail
+      this.tail = this.tail.prev;
+      this.tail.next = null;
+    } else {
+      // Remove middle node
+      current.prev.next = current.next;
+      current.next.prev = current.prev;
+    }
+    return;
+  }
 
   // 🧾 Print List
   printList() {
